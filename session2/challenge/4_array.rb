@@ -7,3 +7,17 @@
 # get_squares [25, 4, 9, 6, 50, 16, 5] # => [4, 5]
 
 # This time you will have to define the method, it's called: get_squares
+
+def get_squares(array)
+  to_return = []
+  array.each { |v|
+    if (array.include? v) && (array.include? v*v)
+      to_return << v
+    end
+  }
+  to_return.sort
+end
+
+#trial = [25, 4, 9, 6, 50, 16, 5]
+
+#puts get_squares(trial)
