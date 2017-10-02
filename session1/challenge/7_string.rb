@@ -9,7 +9,7 @@ def pirates_say_arrrrrrrrr(string)
   #This is the string that will be returned at the end, we will be pushing letters to it.
   to_return = ""
 
-  #We need to create a variable that will change to true or false after each iteration depending on the letter of the current iteration. We will set this to false.
+  #We need to create a variable that will change to true or false after each iteration depending on the letter of the current iteration. We will set this to false initially because the first character doesn't have one preceeding it.
   add_next = false
 
 
