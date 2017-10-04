@@ -64,3 +64,59 @@
 # date docs are at: http://ruby-doc.org/core/classes/Date.html
 # don't spend too much time worrying about them :)
 require 'date'
+
+#create user class
+class User
+#getters and setters
+  attr_accessor :username, :blogs
+#initialize method
+  def initialize(username)
+    self.username = username
+    self.blogs = []
+  end
+
+#add blog method, will call the Blog class to generate a new blog. This blog can then be added to the blogs array.
+  def add_blog(date, text)
+    added_blog = Blog.new(date, self, text)
+    blogs << added_blog
+    #To return the sorted blogs array we can sort by the contents of each element in the array. In this case we want to sort by .date
+    self.blogs = blogs.sort_by { |blog| blog.date}.reverse
+    added_blog
+  end
+end
+
+#create out blog class, which will be generated each time a blog is added to the User class using User#add_blog
+class Blog
+#getts and setters
+  attr_accessor :date, :user, :text
+#initialize method
+  def initialize(date, user, text)
+    self.date = date
+    self.user = user
+    self.text = text
+  end
+#create a summary method that prints the first ten words of each entry
+  def summary
+    text.split(' ').take(10).join(' ')
+  end
+#define an entry method that will print out the entire blog entry including date and user
+  def entry
+    "#{user.username} #{date}\n#{text}"
+  end
+
+  def ==(other)
+    date   == other.date &&
+      user == other.user &&
+      text == other.text
+  end
+end
+
+=begin
+lissa = User.new 'QTSort'
+
+lissa.add_blog Date.parse("2020-05-28") , "Sailor Mars is my favourite"
+lissa.add_blog Date.parse("2010-05-29") , "Sailor B is my favourite"
+lissa.add_blog Date.parse("1999-05-29") , "Sailor Bar is my favourite"
+lissa.add_blog Date.parse("2010-05-29") , "Sailor Brs is my favourite"
+puts lissa.blogs
+=end
