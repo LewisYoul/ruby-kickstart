@@ -17,3 +17,18 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker(t_or_f, *elems)
+  rtn = []
+  elems.map! { |n| !!n }
+  elems.each_slice(2) do |first, last|
+    answer = if t_or_f
+      first != last
+    else
+      first == last
+    end
+    rtn << answer
+  end
+  rtn
+end
+
+#puts match_maker true, true, true
