@@ -13,3 +13,13 @@ end
 # >> Bill's student id is 25
 # >> Danya's student id is 15
 # >> Mei's student id is 12
+
+housemates = {
+  :tom => 35,
+  :lewis => 28,
+  :adam => 27
+}
+
+housemates.each { |name, age| #name = key, age = value
+  puts "#{name.to_s.capitalize}'s age is #{age}"
+}

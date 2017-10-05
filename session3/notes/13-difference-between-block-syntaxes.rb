@@ -17,3 +17,9 @@ block_checker [1,2,3].map do 1 end   # => [[1, 2, 3], true]
 
 # This makes { ... } ideal for inline blocks, and
 # do ... end ideal for mutli line blocks
+
+def check_block(array, &block)
+  [array.to_a, !!block]
+end
+
+puts check_block [2,4,6].map { 2 }

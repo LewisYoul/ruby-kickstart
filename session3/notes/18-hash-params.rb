@@ -22,3 +22,17 @@ same_case 'UPPER lower' , :upcase   => false  # => "upper lower"
 same_case 'UPPER lower' , :downcase => true   # => "upper lower"
 same_case 'UPPER lower' , :downcase => false  # => "UPPER LOWER"
 same_case 'UPPER lower' , :upcase   => true   # => "UPPER LOWER"
+
+###########################
+
+def make_same_case( string, options = Hash.new)
+  return string.upcase if options[:upcase]
+  return string.upcase if options[:downcase] == false
+  string.downcase
+end
+
+puts make_same_case "UP down" #=> up down
+puts make_same_case "UP down", :upcase => true #=> UP DOWN
+puts make_same_case "UP down", :upcase => false #=> up down
+puts make_same_case "UP down", :downcase => true #=> up down
+puts make_same_case "UP down", :downcase => false #=> UP DOWN

@@ -12,3 +12,17 @@ end
 
 counter = 0
 meth2 { counter += 10 } # => "(meth1: 10) (meth2: 20)"
+
+def method1(&block)
+  "method1: #{block.call}"
+end
+
+def method2(&block)
+  "#{method1(&block)}, method2: #{block.call}"
+end
+
+count = 0
+
+puts meth1 {count += 10}
+count = 0
+puts meth2 {count += 10}

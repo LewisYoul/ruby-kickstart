@@ -27,8 +27,10 @@ character_counts = Hash.new { |this_hash, key| this_hash[key] = 0 }
 character_counts["a"]     # => 0
 character_counts          # => {"a"=>0}
 
-"abcbcbababcbcx".each_char do |char|
+"lewisisreallycool".each_char do |char|
   character_counts[char] += 1
 end
 
 character_counts # => {"a"=>3, "b"=>6, "c"=>4, "x"=>1}
+
+puts character_counts

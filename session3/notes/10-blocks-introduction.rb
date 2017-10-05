@@ -10,3 +10,10 @@ ary.map! do |num|
 end
 ary                         # => [12, 8, 4]
 
+
+array = [2, 4, 6, 8]
+
+array.map! do |num|
+  num / 2
+end
+puts array

@@ -22,3 +22,12 @@ class Example
   attr_accessor :my_method
   instance_methods(false) # => [:my_method, :my_method=]
 end
+
+class Name
+  attr_accessor :test
+
+  def method1
+  end
+end
+
+puts Name.instance_methods(false)

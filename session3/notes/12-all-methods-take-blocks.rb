@@ -35,3 +35,19 @@ end
 result = heres_six { |num| "#{num*2} is Josh's favourite number"}
 result # => "12 is Josh's favourite number"
 
+def block_no_block(&block)
+  if block
+    "The block you provided evaluates to #{block.call}"
+  else
+    "You didn't provide a block dummy! That means it was set to nil."
+  end
+end
+
+puts block_no_block { 1 + 2 }
+puts block_no_block
+
+def five_in_here(&block)
+  block.call 5
+end
+
+puts five_in_here { |n| n*3 } #=> 15

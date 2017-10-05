@@ -19,3 +19,11 @@ def square_it_method(num)
 end
 square_it_method 5    # => 25
 square_it_method 10   # => 100
+
+
+
+num_minus_five = Proc.new { |num| num-5 }
+
+puts num_minus_five.call 10 #=> 5
+puts num_minus_five.call 5 #=> 0
+puts num_minus_five.call 100 #=> 95

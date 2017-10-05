@@ -29,3 +29,16 @@ ruby_kickstart_favourite_numbers = [12, 13, 3, 43, 7]
 minimum(  12, 13, 3, 43, 7 )                 # => 3
 minimum(*[12, 13, 3, 43, 7])                 # => 3
 minimum(*ruby_kickstart_favourite_numbers )  # => 3
+
+
+############################
+def lowest(*nums)
+  nums.sort![0]
+end
+
+puts lowest 5, 4, 3, 2, 1, -7 #=> -7
+puts lowest 5, 4, 3, 2, 1 #=> 1
+
+my_nums = [12, 5, 3, -6, 400]
+
+puts lowest *my_nums #=> -6

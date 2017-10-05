@@ -25,3 +25,11 @@ what_are_filled_in :A , :B , :C , :D , :E  # => "A B C D E"
 
 # what will this return?
 what_are_filled_in :A ,                :E  # =>
+
+def times_5_if_true(num, doit = true)
+  return num*5 if doit
+  num
+end
+
+puts times_5_if_true 5 #=> 25
+puts times_5_if_true 5, false #=> 5
