@@ -52,5 +52,38 @@
 #   end
 # end       # => ["a", "m", "r", 1, 3, 4, 9, 2.5, 9.0, 25.8]
 
-def your_sort
+####### My sort method
+
+array = [4,6,5,2,1,3,10,8,9,7]
+
+def bubble_sort(array)
+  n = array.length
+
+  loop do
+    swapped = false
+    (n-1).times do |i|
+      if array[i] > array[i+1]
+        array[i], array[i+1] = array[i+1], array[i]
+        swapped = true
+      end
+    end
+    break if not swapped
+  end
+  array
+end
+
+####### solved
+
+def your_sort( array , &orderer )
+  # if it is nil, then it hasn't been set, default to spaceship operator for comparison result
+  # if no block has been specified orderer is set to Proc
+  orderer ||= Proc.new { |a, b| a <=> b }
+
+  # for each index within array
+  array.each_index do |index1|
+    array.each_index do |index2| # also look at index two of the array where the block will be called
+      order = orderer.call(array[index1], array[index2]) # each time passing it the value at indexes
+      array[index1], array[index2] = array[index2], array[index1] if order < 0 #if the value returned in less than 0 sort via bubble sort.
+    end
+  end
 end
