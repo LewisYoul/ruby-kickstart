@@ -29,4 +29,30 @@
 # shared [1,2,3], [3,2,1]            # => [{1=>[true, true], 2=>[true, true], 3=>[true, true]}, [1, 2, 3]]
 
 def shared(a, b)
+
+  a.map! { |x| [x,[true,nil]] }
+
+  hash = Hash.new { |this_hash, elem| this_hash[elem] = [nil, true]}
+
+  a.each { |k,v| hash[k] = v }
+
+  b.each do |x|
+    if hash.has_key? x
+      hash[x] = [true, true]
+    else
+      hash[x]
+    end
+  end
+
+  in_both = []
+  hash.each do |k,v|
+    if v[0] && v[1]
+      in_both << k
+    end
+  end
+
+  [hash, in_both]
+
 end
+
+#puts shared [1,2,3], [1,2,4]
