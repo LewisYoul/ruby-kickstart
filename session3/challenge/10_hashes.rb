@@ -28,6 +28,47 @@
 #
 # create it from scratch :)
 
+#define our method which accepts a Hash
+def pathify(paths=Hash.new)
+  #base case which will be returned if paths is an array (there are no sub directories)
+  return paths.map { |path| "/" + path } if paths.is_a? Array
 
-def pathify
+  #generate the array which will be returned containing elements of Strings representing paths
+  to_return = []
+
+  #iterate over the paths Hash with k(parent_path) & v(child_dirs)
+  paths.each do |parent_path, child_dirs|
+    parent_path = "/" + parent_path #simply add a / to the parent_path to represent the beginning of the path
+    child_paths = pathify child_dirs   #here we are calling everything that has already been called, now on
+                                            #the child_dirs (which will be a hash), therefore returning a path (first step)
+                                            #if the remaining child_dirs is an array otherwise returning the parent_path
+                                            #and child_dirs.
+    child_paths.each do |child_path|        # join each child path to it's parent path
+      to_return << (parent_path + child_path) #and add to to_return array.
+    end
+  end
+  to_return #return to_return array
 end
+
+
+=begin INITIAL ATTEMPT
+
+hash = {
+  'usr' => {'bin' => ['ruby'], 'include' => ['zlib.h'] }
+}
+def check_if_hash(hash=Hash.new)
+  rtn_arr = []
+  hash.each do |k,v|
+    if hash[k].is_a? Hash
+      rtn_arr << k
+      hash = v
+    elsif hash[k].is_a? Array
+      rtn_arr << v
+    end
+  end
+  puts hash
+  rtn_arr
+end
+
+puts check_if_hash hash
+=end
