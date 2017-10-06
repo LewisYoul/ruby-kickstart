@@ -30,5 +30,10 @@
 # end
 
 
-def array_init
+def array_init(n=5, &block) #define method, optional paramater of length that defaults to 5, also accepting a block
+  #||= means "if not defined then define it". Therefore if the block has not been defined
+  #assign the default Proc to block.
+  #then generate a new array calling size n and the saved/assigned block.
+  block ||= Proc.new { |i| (i * 100).to_s }
+  Array.new(n, &block)
 end
