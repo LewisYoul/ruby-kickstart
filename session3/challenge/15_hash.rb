@@ -38,3 +38,15 @@
 # middle head                        # => 3
 # head = {:data => 6, :next => head}
 # middle head                        # => 3
+
+#define list size
+def list_size(list)
+  return 0 unless list #return zero unless the list exists
+  1 + list_size(list[:next]) #recursive step
+end
+
+#define middle
+def middle(list, distance=list_size(list)/2) #accepts the list and the variable distance which is equal to the result of list_size / 2
+  return list[:data] if distance == 0
+  middle list[:next], (distance - 1)
+end
