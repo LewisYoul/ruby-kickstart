@@ -21,11 +21,34 @@
 # problem_14 2,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => true
 # problem_14 3,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => false
 
-def problem_14
+def problem_14(*params)
+  if params.last.is_a? Hash
+    prob = params.pop[:problem]
+  end
+  prob ||= :count_clumps
+
+  return count_clumps(*params) if prob == :count_clumps
+  return same_ends(*params) if prob == :same_ends
+
 end
 
-def same_ends
+def same_ends(n, *params)
+  params[0, n] == params[-n, n]
 end
 
-def count_clumps
+def count_clumps(*params)
+
+  count = 0
+  two_before = nil
+  previous = nil
+
+  params.each do |n|
+    count += 1 if (n == previous) && (previous != two_before)
+
+    two_before = previous
+    previous = n
+  end
+  count
 end
+
+#count_clumps 1, 1, 2, 2, 2, 1, 1
